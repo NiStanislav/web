@@ -1,0 +1,63 @@
+<div class="container color-dark">
+    <div class="col">
+      <p>People</p>
+    </div>
+    <div class='col'>
+        <button mat-button [routerLink]="['/add']">Add new person</button>
+    </div>
+  </div>
+<mat-card>
+    <mat-card-subtitle> 
+        </mat-card-subtitle>
+    <mat-card-content>
+    <div class="example-container mat-elevation-z8">  
+                
+        <mat-progress-bar *ngIf="!dataSource" mode="indeterminate"></mat-progress-bar>  
+        <mat-table #table [dataSource]="dataSource" *ngIf="dataSource">
+    
+        <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+    
+        <!-- ID Column -->
+        <ng-container matColumnDef="UserName">
+            <mat-header-cell *matHeaderCellDef> Username </mat-header-cell>
+           
+            <mat-cell *matCellDef="let row"> 
+                <a [routerLink]="['/person', row.UserName]"> 
+                    {{row.UserName}} 
+                </a>
+            </mat-cell>
+           
+        </ng-container>
+    
+        <!-- Progress Column -->
+        <ng-container matColumnDef="FirstName">
+            <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.FirstName}} </mat-cell>
+        </ng-container>
+    
+        <!-- Name Column -->
+        <ng-container matColumnDef="LastName">
+            <mat-header-cell *matHeaderCellDef> Last Name </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.LastName}} </mat-cell>
+        </ng-container>
+    
+        <!-- Color Column -->
+        <ng-container matColumnDef="Gender">
+            <mat-header-cell *matHeaderCellDef> Gender </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.Gender}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    
+        <mat-paginator #paginator
+                    [length]="exampleDatabase.data.length"
+                    [pageIndex]="0"
+                    [pageSize]="5"
+                    [pageSizeOptions]="[5, 10, 20]">
+        </mat-paginator>
+    </div>
+    </mat-card-content>
+</mat-card>

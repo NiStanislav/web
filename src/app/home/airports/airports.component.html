@@ -1,0 +1,17 @@
+<div class="container color-dark">
+  <div class="col">
+    <p>Airports</p>
+  </div>
+  <div class="col">
+    <button mat-button (click)='nearest()'>Nearest</button>
+  </div>
+</div>
+<div class="container color-light">
+  <div class="col" *ngFor="let port of airports; let i = index" >
+    <p class="sm">{{port.Name}}</p>
+    <p class="sm">{{port.IataCode }}</p>
+    <p class="sm">{{port.Location.Address }}</p>
+    <p class="sm">{{port.Location.City.CountyRegion }}</p>
+    <input type="button" value="Learn more" [routerLink]="['/airport', port.IcaoCode]">
+  </div>
+</div>

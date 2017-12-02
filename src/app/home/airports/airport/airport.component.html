@@ -1,0 +1,17 @@
+<div class="container color-dark">
+  <div class="col">
+    <p>Airport</p>
+  </div>
+</div>
+<div class="container color-light" *ngIf="port" >
+  <div class="col">
+    <p class="sm">{{port.Name}}</p>
+    <p class="sm">{{port.IataCode }}</p>
+    <p class="sm">{{port.Location.Address }}</p>
+    <p class="sm">{{port.Location.City.CountyRegion }}</p>
+  </div>
+
+  <agm-map [latitude]="lat" [longitude]="lng">
+    <agm-marker [latitude]="lat" [longitude]="lng" [label]="label"></agm-marker>
+  </agm-map>
+</div>
