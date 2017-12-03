@@ -1,3 +1,46 @@
-<p>
-  Hello {{username}}, person works!
-</p>
+<div class="container color-dark">
+  <div class="col">
+    <p><b>{{username}}</b></p>
+  </div>
+  <div class="col">
+      <p><b>Friends</b></p>
+  </div>
+</div>
+<div class="container color-light"  >
+  <div class="col" *ngIf="profile">
+    <p class="sm"><b>First Name: </b>{{profile.FirstName}}</p>
+    <p class="sm"><b>Last Name: </b>{{profile.LastName}}</p>
+    <p class="sm"><b>Gender: </b>{{profile.Gender}}</p>
+    <p class="sm"><b>Emails: </b>{{profile.Emails}}</p>
+  </div>
+  <div class="col" *ngIf="profile">
+      <mat-card class="example-card" *ngFor="let f of profile.Friends">
+                  <mat-card-header [routerLink]="['/person', f.UserName]">
+                      <div mat-card-avatar class="example-header-image"><mat-icon>person</mat-icon></div>                    
+                      <mat-card-title>{{f.UserName}}</mat-card-title>
+                      <mat-card-subtitle>{{f.FirstName}} {{f.LastName}}</mat-card-subtitle>
+                  </mat-card-header>
+      </mat-card> 
+  </div>
+  <div class="col" *ngIf="profile">
+      <mat-card class="example-card" *ngFor="let t of profile.Trips">
+          <mat-card-header>
+              <mat-card-title>{{t.Name}}</mat-card-title>
+              <mat-card-subtitle>{{t.Budget}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+              <p>
+              {{t.Description}}
+              </p>
+              <p>{{t.StartsAt | date}} - {{t.EndsAt | date}}</p>
+  
+              <mat-chip-list>
+                  
+                  <mat-chip *ngFor="let tag of t.Tags"color="primary" selected="true">{{tag}}</mat-chip>
+                  
+                  </mat-chip-list>
+  
+          </mat-card-content>
+      </mat-card>
+  </div>
+</div>

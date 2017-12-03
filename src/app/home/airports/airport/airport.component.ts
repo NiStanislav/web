@@ -23,7 +23,6 @@ export class AirportComponent implements OnInit {
         this.lat = this.port.Location.Loc.coordinates[1];
         this.lng = this.port.Location.Loc.coordinates[0];
         this.label = this.port.IataCode;
-        console.log(this.lat);
       });
     }
     );

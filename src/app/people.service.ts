@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { UserData } from '../app/people/people.component';
-// import { User } from '../person/add-person/add-person.component';
+import { User } from '../app/person/add/add-person.component';
 import { RequestOptions } from '@angular/http';
 
 @Injectable()
@@ -27,7 +27,7 @@ export class PeopleService {
   }
 
   public getMe<T>(): Observable<T> {
-    return this.http.get<T>(this.actionUrl + '/Me');
+    return this.http.get<T>(this.actionUrl + '/Me?$expand=Friends,Trips');
   }
 
   public getMyFriends(): Promise<any> {
@@ -43,15 +43,7 @@ export class PeopleService {
   }
 
   public getPerson<T>(username: String): Observable<T> {
-    return this.http.get<T>(this.actionUrl + 'People(\'' + username + '\')');
-  }
-
-  public getPersonFriends(username: String) {
-    return this.http.get(this.actionUrl + 'People(\'' + username + '\')?$expand=Friends');
-  }
-
-  public getPersonTrips(username: String) {
-    return this.http.get(this.actionUrl + 'People(\'' + username + '\')?$expand=Trips');
+    return this.http.get<T>(this.actionUrl + 'People(\'' + username + '\')?$expand=Friends,Trips');
   }
 
   public getInvolvedPeople(username: String) {
@@ -59,16 +51,16 @@ export class PeopleService {
        'People(\'' + username + '\')/Trips(0)/Microsoft.OData.Service.Sample.TrippinInMemory.Models.GetInvolvedPeople');
   }
 
-  // public addPerson(user: User){
-  //   let body = JSON.stringify(user);
-  //   let headers = new HttpHeaders();
-  //   headers.set('Content-Type', 'application/json');
-  //   console.log(body);
-  //   this.http.post('http://services.odata.org/TripPinRESTierService/(S(hu4p11ocgenadam2lzvhzyni))/People',
-  //                  body, {headers}).subscribe();
+  public addPerson(user: User) {
+    const body = JSON.stringify(user);
+    const headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/json');
+    console.log(body);
+    this.http.post('http://services.odata.org/TripPinRESTierService/(S(hu4p11ocgenadam2lzvhzyni))/People',
+                   body, {headers}).subscribe();
 
-  //   console.log(user);
-  // }
+    console.log(user);
+  }
 
 
 }

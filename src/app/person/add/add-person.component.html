@@ -1,0 +1,64 @@
+<div>
+    <form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+      <div class="form-container">
+        <div class="row columns">
+          <h1>Add new person</h1>
+         
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Username" formControlName="username">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="First Name" formControlName="firstname">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Last Name" formControlName="lastname">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Email" formControlName="emails">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Address" formControlName="addressInfo">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="City Name" formControlName="addressCityName">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Country Region" formControlName="addressCityCountryRegion">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="City Region" formControlName="addressCityRegion">
+            </mat-form-field>
+            <!-- <input type="text" formControlName="username"> -->
+      
+  
+          <!-- <label>First name
+              <input type="text" formControlName="firstname">
+          </label>
+
+          <label>Last name
+              <input type="text" formControlName="lastname">
+          </label>
+          <label>Email
+              <input type="text" formControlName="emails">
+          </label>
+          <label>Address
+              <input type="text" formControlName="addressInfo">
+          </label>
+        
+          <label>City name
+              <input type="text" formControlName="addressCityName">
+          </label>
+          <label>City country region
+              <input type="text" formControlName="addressCityCountryRegion">
+          </label>
+          <label>City Region
+              <input type="text" formControlName="addressCityRegion">
+          </label> -->
+  
+        
+          
+          <input type="submit" class="button expanded" value="Submit Form" [disabled]="!rForm.valid">
+        </div>
+      </div>
+    </form>
+  </div>
